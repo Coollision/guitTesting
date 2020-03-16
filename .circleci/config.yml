@@ -9,7 +9,7 @@ jobs:
       - image: circleci/android:api-29-ndk
         environment:
           - go_version: 1.14
-          - GO111MODULE: on
+          - GO111MODULE: "on"
     steps:
       - run: sudo apt-get install gcc libgl1-mesa-dev
       - run: echo ${go_version}
