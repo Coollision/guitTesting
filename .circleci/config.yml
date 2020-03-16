@@ -14,8 +14,8 @@ jobs:
       - run: echo ${go_version}
       - run: curl -O https://storage.googleapis.com/golang/go${go_version}.linux-amd64.tar.gz
       - run: sudo tar -C /usr/local -xzf go${go_version}.linux-amd64.tar.gz
-      - run: usr/local/go/bin/go get fyne.io/fyne@develop
+      - run: /usr/local/go/bin/go get fyne.io/fyne@develop
       - checkout
       # specify any bash command here prefixed with `run: `
-      - run: usr/local/go/bin/go build
-      - run: usr/local/go/bin/fyne package -os android -appID com.example.myapp -icon Icon.png
+      - run: /usr/local/go/bin/go build
+      - run: /usr/local/go/bin/fyne package -os android -appID com.example.myapp -icon Icon.png
