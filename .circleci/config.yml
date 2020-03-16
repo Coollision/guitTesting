@@ -6,21 +6,16 @@ jobs:
   build:
     docker:
       # specify the version
-      - image: circleci/golang:1.9
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    #### TEMPLATE_NOTE: go expects specific checkout path representing url
-    #### expecting it in the form of
-    ####   /go/src/github.com/circleci/go-tool
-    ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+      - image: circleci/android:api-29-ndk
     steps:
+      - run: sudo apt-get install gcc libgl1-mesa-dev
+      - run: curl --silent --show-error --location --fail --retry 3 --output /tmp/go1.14.tgz \
+          "https://golang.org/dl/go$1.14.linux-amd64.tar.gz" && \
+          sudo tar -C /usr/local -xzf /tmp/go1.14.tgz; && \
+          rm /tmp/go1.14.tgz
+      - run: export PATH /usr/local/go/bin:$PATH
+      - run: go get fyne.io/fyne
       - checkout
-
       # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run: go build
+      - run: fyne package -os android -appID com.example.myapp -icon Icon.png
