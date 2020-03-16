@@ -11,8 +11,8 @@ jobs:
       - run: sudo apt-get install gcc libgl1-mesa-dev
       - run: curl --silent --show-error --location --fail --retry 3 --output /tmp/go1.14.tgz \
           "https://golang.org/dl/go$1.14.linux-amd64.tar.gz" && \
-          sudo tar -C /usr/local -xzf /tmp/go1.14.tgz; && \
-          rm /tmp/go1.14.tgz
+          sudo tar -C /usr/local -xzf /tmp/go1.14.tgz;
+      - run: rm /tmp/go1.14.tgz
       - run: export PATH /usr/local/go/bin:$PATH
       - run: go get fyne.io/fyne
       - checkout
