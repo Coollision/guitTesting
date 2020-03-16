@@ -15,7 +15,6 @@ jobs:
       - run: curl -O https://storage.googleapis.com/golang/go${go_version}.linux-amd64.tar.gz
       - run: sudo tar -C /usr/local -xzf go${go_version}.linux-amd64.tar.gz
       - run: export PATH=$PATH:/usr/local/go/bin
-      - run: export PATH /usr/local/go/bin:$PATH
       - run: go get fyne.io/fyne
       - checkout
       # specify any bash command here prefixed with `run: `
