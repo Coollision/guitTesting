@@ -3,11 +3,9 @@ module guiTesting
 go 1.14
 
 require (
-	fyne.io/fyne v1.2.4-0.20200313083822-c547620c15a1
+	fyne.io/fyne v1.2.1-0.20200315215049-c013b462ae38
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
-	github.com/go-gl/glfw v0.0.0-20200222043503-6f7a984d4dc4 // indirect
-	github.com/srwiley/oksvg v0.0.0-20200311192757-870daf9aa564 // indirect
 	github.com/srwiley/rasterx v0.0.0-20200120212402-85cb7272f5e9 // indirect
 	github.com/stretchr/testify v1.5.1 // indirect
 	golang.org/x/exp v0.0.0-20200228211341-fcea875c7e85 // indirect

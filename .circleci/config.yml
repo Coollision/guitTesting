@@ -8,15 +8,15 @@ jobs:
       # specify the version
       - image: circleci/android:api-29-ndk
         environment:
-          - go_version: 1.14
+          - go_version: 1.13.8
           - GO111MODULE: "on"
     steps:
-      - run: sudo apt-get install gcc libgl1-mesa-dev
-      - run: echo ${go_version}
-      - run: curl -O https://storage.googleapis.com/golang/go${go_version}.linux-amd64.tar.gz
-      - run: sudo tar -C /usr/local -xzf go${go_version}.linux-amd64.tar.gz
-      - run: /usr/local/go/bin/go get fyne.io/fyne@develop
+      - run: sudo apt-get update && sudo apt-get install gcc libgl1-mesa-dev xorg-dev
+      - run: curl -O https://storage.googleapis.com/golang/go${go_version}.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go${go_version}.linux-amd64.tar.gz && rm go${go_version}.linux-amd64.tar.gz  && /usr/local/go/bin/go get fyne.io/fyne/cmd/fyne@develop
+#      - run: ls /home/circleci/go/bin
+      - run: echo $ANDROID_NDK_HOME
       - checkout
       # specify any bash command here prefixed with `run: `
-      - run: /usr/local/go/bin/go build
-      - run: /usr/local/go/bin/fyne package -os android -appID com.example.myapp -icon Icon.png
+      - run: /usr/local/go/bin/go test .
+      - run: /usr/local/go/bin/go build .
+      - run: PATH=$PATH:/usr/local/go/bin /home/circleci/go/bin/fyne package -os android -appID com.example.myapp -icon Icon.png
